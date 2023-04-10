@@ -36,7 +36,7 @@ func main() {
 	}
 
 	futuresClient := binance.NewFuturesClient(apiKey, secretKey)
-	res, err := futuresClient.NewDepthService().Symbol("BTCUSDT").Do(context.Background())
+	res, err := futuresClient.NewDepthService().Symbol("ETHUSDT").Do(context.Background())
 	if err != nil {
 		fmt.Println(err)
 		return
