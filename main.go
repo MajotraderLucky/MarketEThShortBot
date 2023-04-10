@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math"
 	"os"
 	"strconv"
 	"time"
@@ -219,6 +220,13 @@ func main() {
 	fmt.Println("short Fibo 618 =", shortFib618)
 	shortFib786 := min + ((max - min) * 0.786)
 	fmt.Println("short Fibo 786 =", shortFib786)
+
+	priceCorridor := max - min
+	fmt.Println("----------------------")
+	fmt.Println("Price corridor    =", priceCorridor)
+	priceCorridorPercent := ((max - min) / max) * 100
+	fmt.Print("Price corridor(%) = ", math.Round(priceCorridorPercent*100)/100, "%\n")
+	fmt.Println("----------------------")
 
 	fmt.Println("----------------------")
 }
