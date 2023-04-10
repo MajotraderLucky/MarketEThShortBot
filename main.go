@@ -333,4 +333,5 @@ func main() {
 	fmt.Println(bidPriceFloat, reflect.TypeOf(bidPriceFloat))
 
 	fmt.Println("----------------------")
+	fmt.Println("----------------------")
 }
