@@ -41,4 +41,5 @@ func main() {
 		return
 	}
 	fmt.Println(res)
+	fmt.Println("----------------------")
 }
