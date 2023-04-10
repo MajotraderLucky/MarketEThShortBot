@@ -338,5 +338,37 @@ func main() {
 	}
 	fmt.Println("Price below 236 fibo =", priceBelow236)
 
+	var priceBelow382 bool = false
+	if (bidPriceFloat < shortFib382) && (bidPriceFloat > min) {
+		priceBelow382 = true
+	} else {
+		priceBelow382 = false
+	}
+	fmt.Println("Price below 382 fibo =", priceBelow382)
+
+	var priceBelow500 bool = false
+	if (bidPriceFloat < shortFib500) && (bidPriceFloat > min) {
+		priceBelow500 = true
+	} else {
+		priceBelow500 = false
+	}
+	fmt.Println("Price below 500 fibo =", priceBelow500)
+
+	var priceBelow618 bool = false
+	if (bidPriceFloat < shortFib618) && (bidPriceFloat > min) {
+		priceBelow618 = true
+	} else {
+		priceBelow618 = false
+	}
+	fmt.Println("Price below 618 fibo =", priceBelow618)
+
+	var priceBelow786 bool = false
+	if (bidPriceFloat < shortFib786) && (bidPriceFloat > min) {
+		priceBelow786 = true
+	} else {
+		priceBelow786 = false
+	}
+	fmt.Println("Price below 786 fibo =", priceBelow786)
+
 	fmt.Println("----------------------")
 }
