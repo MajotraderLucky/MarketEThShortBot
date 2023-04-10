@@ -209,5 +209,16 @@ func main() {
 	fmt.Println("Highest price   =", max)
 	fmt.Println("----------------------")
 
+	shortFib236 := min + ((max - min) * 0.236)
+	fmt.Println("short Fibo 236 =", shortFib236)
+	shortFib382 := min + ((max - min) * 0.382)
+	fmt.Println("short Fibo 382 =", shortFib382)
+	shortFib500 := min + ((max - min) * 0.500)
+	fmt.Println("short Fibo 500 =", shortFib500)
+	shortFib618 := min + ((max - min) * 0.618)
+	fmt.Println("short Fibo 618 =", shortFib618)
+	shortFib786 := min + ((max - min) * 0.786)
+	fmt.Println("short Fibo 786 =", shortFib786)
+
 	fmt.Println("----------------------")
 }
