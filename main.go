@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/adshao/go-binance/v2"
+	"github.com/adshao/go-binance/v2/futures"
 	"github.com/joho/godotenv"
 )
 
@@ -392,6 +393,31 @@ func main() {
 		startShortTo382 = false
 	}
 	fmt.Println("Open short position to level 382 =", startShortTo382)
+
+	openOrders, err := futuresClient.NewListOpenOrdersService().Symbol("ETHUSDT").
+		Do(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	for _, o := range openOrders {
+		fmt.Println(o)
+		fmt.Println(len(openOrders), "orders have been opened")
+	}
+
+	if len(openOrders) == 0 && startShortTo382 == true {
+		fmt.Println(len(openOrders), "orders have been opened")
+		shortFib382String := fmt.Sprintf("%.2f", shortFib382)
+		limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+			Side(futures.SideTypeSell).Type(futures.OrderTypeLimit).
+			TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.003").
+			Price(shortFib382String).Do(context.Background())
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(limitOrder)
+	}
 
 	// Level 500 open short position
 	var startShortTo500 = false
