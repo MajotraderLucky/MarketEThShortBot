@@ -427,6 +427,7 @@ func main() {
 			StopPrice(shortFib500String).Do(context.Background())
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 		fmt.Println(stopOrder)
 	}
@@ -441,6 +442,7 @@ func main() {
 			Do(context.Background())
 		if err != nil {
 			fmt.Println(err)
+			return
 		}
 		fmt.Println(takeProfitOrder)
 	}
@@ -453,6 +455,19 @@ func main() {
 		startShortTo500 = false
 	}
 	fmt.Println("Open short position to level 500 =", startShortTo500)
+
+	if len(openOrders) == 0 && startShortTo500 == true {
+		shortFib500String := fmt.Sprintf("%.2f", shortFib500)
+		limitOrder, err := futuresClient.NewCreateOrderService().Symbol("ETHUSDT").
+			Side(futures.SideTypeSell).Type(futures.OrderTypeLimit).
+			TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.005").
+			Price(shortFib500String).Do(context.Background())
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(limitOrder)
+	}
 
 	// Level 618 open short position
 	var startShortTo618 = false
