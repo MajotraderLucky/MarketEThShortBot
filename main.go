@@ -386,12 +386,7 @@ func main() {
 	fmt.Println("----------------------")
 
 	// Level 382 open short position
-	var startShortTo382 = false
-	if priceBelow382 == true && startTrade == true && openPosition == false {
-		startShortTo382 = true
-	} else {
-		startShortTo382 = false
-	}
+	var startShortTo382 bool = priceBelow382 && startTrade && !openPosition
 	fmt.Println("Open short position to level 382 =", startShortTo382)
 
 	openOrders, err := futuresClient.NewListOpenOrdersService().Symbol("ETHUSDT").
@@ -405,7 +400,9 @@ func main() {
 		fmt.Println(len(openOrders), "orders have been opened")
 	}
 
-	if len(openOrders) == 0 && startShortTo382 == true {
+	conditionLimit382 := len(openOrders) == 0 && startShortTo382
+
+	if conditionLimit382 {
 		fmt.Println(len(openOrders), "orders have been opened")
 		shortFib382String := fmt.Sprintf("%.2f", shortFib382)
 		limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
