@@ -470,7 +470,7 @@ func main() {
 	}
 
 	if len(openOrders) == 1 && startShortTo500 == true {
-		shortFib618String := fmt.Sprintf("%.2", shortFib618)
+		shortFib618String := fmt.Sprintf("%.2f", shortFib618)
 		stopOrder, err := futuresClient.NewCreateOrderService().Symbol("ETHUSDT").
 			Side(futures.SideTypeBuy).Type(futures.OrderTypeStopMarket).
 			TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.005").
