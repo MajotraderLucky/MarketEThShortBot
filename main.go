@@ -551,5 +551,33 @@ func main() {
 		fmt.Println(limitOrder)
 	}
 
+	if len(openOrders) == 1 && startShortTo786 {
+		maxString := fmt.Sprintf("%.2f", max)
+		stopOrder, err := futuresClient.NewCreateOrderService().Symbol("ETHUSDT").
+			Side(futures.SideTypeBuy).Type(futures.OrderTypeStopMarket).
+			TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.01").
+			StopPrice(maxString).Do(context.Background())
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(stopOrder)
+	}
+
+	takeProfit786Condition := positionSizeFloat != 0 && len(openOrders) == 1 && priceBelow786
+
+	if takeProfit786Condition {
+		shortFib618String := fmt.Sprintf("%.2f", shortFib618)
+		takeProfitOrder, err := futuresClient.NewCreateOrderService().
+			Symbol("ETHUSDT").Side(futures.SideTypeBuy).Type(futures.OrderTypeTakeProfitMarket).
+			TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.01").StopPrice(shortFib618String).
+			Do(context.Background())
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(takeProfitOrder)
+	}
+
 	fmt.Println("----------------------")
 }
